@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import '../App.css';
+import { useWidgetContext } from './widget';
 
 function Input() {
 
-    const [inputValue, setInputValue] = useState<number | string>(0);
+    const { value, updateValue } = useWidgetContext(); 
 
     const validator = (event: React.ChangeEvent<HTMLInputElement>) => {
         // this is a commissions test, we only want it to be above 0 and it is a price so only 2dp
@@ -11,12 +12,12 @@ function Input() {
         const input = event.target.value;
 
         if(regex.test(input)) {
-            setInputValue(input);
+            updateValue(Number(input));
         }
     }
 
     return (
-        <input type='text' pattern='^([0-9]+\.?([0-9]{0,2})?)?$' onChange={validator} value={inputValue}></input>
+        <input type='text' pattern='^([0-9]+\.?([0-9]{0,2})?)?$' onChange={validator} value={value}></input>
     );
 }
 
