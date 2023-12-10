@@ -9,6 +9,7 @@ type WidgetProps = {
     title: string;
 }
 
+// forced upperBound to be explicitly number or null, so that the data cannot invalidate the table
 export type commissionData = {
   id: number;
   name: string;
@@ -25,8 +26,8 @@ type ContextType = {
 export type commissionCalculatedData = {
   id: number;
   percentage: string;
-  bandRevenue: number|null;
-  commission: number|null;
+  bandRevenue: number;
+  commission: number;
 }
 
 
@@ -37,7 +38,7 @@ export const context = createContext<ContextType>({
 
 export const useWidgetContext = () => useContext(context);
 
-const workoutCommission = (figure: number, percentage: number) => {
+const calculateCommission = (figure: number, percentage: number) => {
   return (figure / 100) * percentage;
 }
 
@@ -84,17 +85,17 @@ function Widget({title}: WidgetProps) {
 
         if(data.upperBound == null) {
           bandBreak = value;
-          commission = workoutCommission(bandBreak, data.commissionRate);
+          commission = calculateCommission(bandBreak, data.commissionRate);
         }
         else {
           const breakBand = data.upperBound - data.lowerBound;
           if(value >= breakBand) {
             value -= breakBand;
             bandBreak = breakBand;
-            commission = workoutCommission(bandBreak, data.commissionRate);
+            commission = calculateCommission(bandBreak, data.commissionRate);
           } else {
             bandBreak = value;
-            commission = workoutCommission(bandBreak, data.commissionRate);
+            commission = calculateCommission(bandBreak, data.commissionRate);
             value = 0;
           }
         }
