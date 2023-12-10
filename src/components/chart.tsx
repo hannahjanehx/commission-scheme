@@ -1,33 +1,32 @@
 import React from 'react';
 import '../App.css';
-import { BarChart } from '@mui/x-charts/BarChart';
+import { PieChart  } from '@mui/x-charts/PieChart';
+import { commissionCalculatedData } from './widget';
+
+type chartProps = {
+  commissionsData: commissionCalculatedData[]
+}
 
 // chart imports used are currently throwing errors that mismatch their docs - working for what i need at this moment
-function Chart() {
+function Chart({commissionsData}: chartProps) {
 
-  // hard-coded data for skeleton purposes
-  const data: number[] = [500, 750, 600, 0];
+  let data: any[] = [];
+  commissionsData.forEach(element => {
+    data.push({
+      value: element.commission,
+      label: element.percentage + ' Commission Band'
+    })
+  });
 
   return (
-    <>
-      <p>How much commission was made in each band break</p>
-      <BarChart
-        xAxis={[
-          {
-            id: 'barCategories',
-            data: ['10%', '15%', '20%', '25%'],
-            scaleType: 'band',
-          },
-        ]}
-        series={[
-          {
-            data: data,
-          },
-        ]}
-        width={500}
-        height={300}
-      />
-    </>
+    <PieChart series={[{ data, innerRadius: 80 }]} 
+      slotProps={{ legend: { hidden: true }}} 
+      width={400}
+      height={200}>
+        <text x={115} y={100}>
+          Breakdown
+        </text>
+    </PieChart>
   );
 }
 
