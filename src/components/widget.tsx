@@ -18,8 +18,8 @@ export type commissionData = {
 }
 
 type ContextType = {
-  value: number;
-  updateValue:(updatedValue: number) => void;
+  value: string;
+  updateValue:(updatedValue: string) => void;
 }
 
 export type commissionCalculatedData = {
@@ -31,7 +31,7 @@ export type commissionCalculatedData = {
 
 
 export const context = createContext<ContextType>({
-  value: 0,
+  value: '0',
   updateValue: () => {},
 });
 
@@ -45,7 +45,7 @@ function Widget({title}: WidgetProps) {
 
   // create a useState to hold the commission data
   const [commissionDataTable, setCommissionDataTable] = useState<commissionData[]>([]);
-  const [inputValue, setInputValue] = useState<number>(0);
+  const [inputValue, setInputValue] = useState<string>('0');
   const [commissionValue, setCommissionValue] = useState<number>(0);
   const [calculatedData, setCalculatedData] = useState<commissionCalculatedData[]>([]);
 
@@ -72,7 +72,7 @@ function Widget({title}: WidgetProps) {
     }, []);
 
     useEffect(() => {
-      let value: number = inputValue;
+      let value: number = Number(inputValue);
       let bandBreak: number|null = 0;
       let commission: number = 0;
       let totalCommission = 0;

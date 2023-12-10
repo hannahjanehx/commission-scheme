@@ -12,7 +12,7 @@ function Input() {
         const input = event.target.value;
 
         if(regex.test(input)) {
-            updateValue(Number(input));
+            updateValue(input);
         }
     }
 
