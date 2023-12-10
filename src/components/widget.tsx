@@ -25,7 +25,7 @@ type ContextType = {
 export type commissionCalculatedData = {
   id: number;
   percentage: string;
-  receivingOn: number|null;
+  bandRevenue: number|null;
   commission: number|null;
 }
 
@@ -102,7 +102,7 @@ function Widget({title}: WidgetProps) {
         const calculatedItem:commissionCalculatedData = {
           id: data.id,
           percentage: data.commissionRate + '%',
-          receivingOn: Math.round((bandBreak + Number.EPSILON) * 100) / 100,
+          bandRevenue: Math.round((bandBreak + Number.EPSILON) * 100) / 100,
           commission: Math.round((commission + Number.EPSILON) * 100) / 100
         }
         totalCommission += commission;
@@ -122,13 +122,13 @@ function Widget({title}: WidgetProps) {
           </header>
           <div className='Widget-container'>
             <Container 
-                childOne={<Input labelText='Please enter a value: £' />}
-                childTwo={<Table commissionsData={calculatedData} />}
+                headerContent={<Input labelText='Please enter a value: £' />}
+                mainContent={<Table commissionsData={calculatedData} />}
             />
             <Container 
                 text="Total commission:"
-                childOne={<p>£{commissionValue?.toFixed(2)}</p>}
-                childTwo={<Chart commissionsData={calculatedData} />}
+                headerContent={<p>£{commissionValue?.toFixed(2)}</p>}
+                mainContent={<Chart commissionsData={calculatedData} />}
             />
           </div>
         </div>

@@ -9,7 +9,7 @@ type tableProps = {
 type row = {
   id: number,
   percentage: string,
-  receivingOn: string|null,
+  bandRevenue: string|null,
   commission: string|null
 }
 
@@ -23,7 +23,7 @@ function Table({commissionsData}: tableProps) {
       width: 90 
     },
     {
-      field: 'receivingOn',
+      field: 'bandRevenue',
       headerName: 'Break',
       description: 'How much of your revenue is in this band break',
       width: 150,
@@ -41,7 +41,7 @@ function Table({commissionsData}: tableProps) {
     rows.push({
       id: data.id,
       percentage: data.percentage,
-      receivingOn: '£' + data.receivingOn?.toFixed(2),
+      bandRevenue: '£' + data.bandRevenue?.toFixed(2),
       commission: '£' + data.commission?.toFixed(2)
     })
   });

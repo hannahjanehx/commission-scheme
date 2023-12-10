@@ -2,11 +2,11 @@ import '../styles/widget.css';
 
 interface ContainerProps {
     text?: string;
-    childOne: JSX.Element;
-    childTwo: JSX.Element;
+    headerContent: JSX.Element;
+    mainContent: JSX.Element;
 }
 
-function Container({text, childOne, childTwo}: ContainerProps) {
+function Container({text, headerContent, mainContent}: ContainerProps) {
   return (
     <div className='container'>
         <div className='container-header'>
@@ -14,10 +14,10 @@ function Container({text, childOne, childTwo}: ContainerProps) {
             ? <p>{text}</p> 
             : null
           }
-            {childOne} 
+            {headerContent} 
         </div>
         <div>
-            {childTwo}
+            {mainContent}
         </div>
     </div>
   );
