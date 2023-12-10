@@ -1,4 +1,3 @@
-import React from 'react';
 import '../App.css';
 import { PieChart  } from '@mui/x-charts/PieChart';
 import { commissionCalculatedData } from './widget';
@@ -13,8 +12,8 @@ function Chart({commissionsData}: chartProps) {
   let data: any[] = [];
   commissionsData.forEach(element => {
     data.push({
-      value: element.commission,
-      label: element.percentage + ' Commission Band'
+      value: element.commission?.toFixed(2),
+      label: element.percentage + ' Commission Band (£)'
     })
   });
 

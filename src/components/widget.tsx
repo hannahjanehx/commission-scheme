@@ -112,7 +112,7 @@ function Widget({title}: WidgetProps) {
       setCalculatedData(calculatedItems);
       setCommissionValue(Math.round((totalCommission + Number.EPSILON) * 100) / 100);
 
-    }, [inputValue]);
+    }, [commissionDataTable, inputValue]);
 
   return (
     <context.Provider value={{value: inputValue, updateValue: setInputValue}}>
@@ -122,13 +122,12 @@ function Widget({title}: WidgetProps) {
           </header>
           <div className='Widget-container'>
             <Container 
-                text="Please enter a value:"
-                childOne={<Input />}
+                childOne={<Input labelText='Please enter a value: £' />}
                 childTwo={<Table commissionsData={calculatedData} />}
             />
             <Container 
                 text="Total commission:"
-                childOne={<p>£{commissionValue}</p>}
+                childOne={<p>£{commissionValue?.toFixed(2)}</p>}
                 childTwo={<Chart commissionsData={calculatedData} />}
             />
           </div>

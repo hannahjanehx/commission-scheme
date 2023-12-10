@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../App.css';
 import { useWidgetContext } from './widget';
 
-function Input() {
+type inputProps = {
+    labelText: string;
+  }
+
+function Input({labelText}: inputProps) {
 
     const { value, updateValue } = useWidgetContext(); 
 
@@ -17,7 +21,10 @@ function Input() {
     }
 
     return (
-        <input type='text' pattern='^([0-9]+\.?([0-9]{0,2})?)?$' onChange={validator} value={value}></input>
+        <>
+            <label htmlFor="priceInput">{labelText}</label>
+            <input name='priceInput' id='priceInput' type='text' pattern='^([0-9]+\.?([0-9]{0,2})?)?$' onChange={validator} value={value}></input>
+        </>
     );
 }
 

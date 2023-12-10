@@ -6,11 +6,11 @@ type tableProps = {
   commissionsData: commissionCalculatedData[]
 }
 
-export type tableRow = {
-  id: number;
-  percentage: string;
-  receivingOn: string;
-  commission: string;
+type row = {
+  id: number,
+  percentage: string,
+  receivingOn: string|null,
+  commission: string|null
 }
 
 function Table({commissionsData}: tableProps) {
@@ -35,12 +35,22 @@ function Table({commissionsData}: tableProps) {
       width: 150,
     }
   ];
+
+  let rows: row[] = [];
+  commissionsData.forEach(data => {
+    rows.push({
+      id: data.id,
+      percentage: data.percentage,
+      receivingOn: '£' + data.receivingOn?.toFixed(2),
+      commission: '£' + data.commission?.toFixed(2)
+    })
+  });
   
   return (
     <div className="Table">
       <DataGrid 
           columns={columns} 
-          rows={commissionsData}/>
+          rows={rows}/>
     </div>
   );
 }
