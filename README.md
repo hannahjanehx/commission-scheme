@@ -7,3 +7,10 @@ external installs used:
 @emotion/react
 @mui/x-data-grid
 @mui/x-charts
+
+Testing:
+I have not written in JEST before but I have written PEST so I was going to implement some testing as part of this. As I was running through the first very basic levels (checking things rendered), I was getting failure notices from the mui libraries that I have mentioned previously. As this was a rapid prototype tech test, I have decided to not carry on as I think at this point I would need to find a different library - if you would like me to do this so I can demonstrate testing, please let me know and I will try and find a different solution. 
+
+Please can I request feedback, good and/or bad, so that I can continue to grow and develop my react and typescript skills.
+
+Thank you.
